@@ -1,0 +1,17 @@
+==================
+Stalker使用说明
+==================
+1.编译安装
+在Stalker/AFL-ETM目录下，使用 make AFL_NO_X86=1 编译Stalker，得到afl-fuzz程序。
+
+2.替换Kernel
+使用Stalker/Software目录下的Kernel来替换Juno R2开发板原有的Kernel。
+
+3.插桩forkserver
+如果测试静态编译的程序，进入Stalker/armRewriter目录下，使用python3 <目标二进制> <输出文件>，对静态编译的二进制插桩forkserver；
+如果测试动态链接的程序，下载patchelf，使用patchelf为目标程序替换动态链接库的RPATH为Stalker/lib，命令为：
+patchelf --set-rpath <Stalker/lib所在目录> <目标程序>
+
+4.测试程序
+在Stalker/AFL-ETM目录下，使用 ./afl-fuzz -i <测试用例目录> -o <输出文件目录> -E 3 -c <指定CPU ID> -l <指定测试小时数> <被测程序命令，测试用例用@@替换>， 对程序进行测试。例如：
+./afl-fuzz -i testcases/others/elf -o output -E 3 -c 3 -l 24 readelf -a @@
