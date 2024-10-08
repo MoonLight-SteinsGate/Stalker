@@ -1,5 +1,8 @@
 # Stalker
 
+Stalker is an efficient hardware-assisted greybox fuzzer based on AFL and Arm CoreSight. More details can be found in our paper "[Efficiently Rebuilding Coverage in Hardware-Assisted Greybox
+Fuzzing](https://dl.acm.org/doi/10.1145/3678890.3678933)" on RAID'2024.
+
 #### 1.Compilation and Installation
 
 Navigate to the directory `Stalker/AFL-ETM` and compile Stalker using make `AFL_NO_X86=1` to obtain the **afl-fuzz** program.
